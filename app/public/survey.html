@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Friend Finder - Survey Page</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Delius|Neucha" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1 style="font-family: 'Neucha', cursive; font-size: 52px"><i class="fas fa-female"></i><i class="fas fa-male"></i><i
+                    class="fas fa-male"></i> Friend Finder <i class="fas fa-male"></i><i class="fas fa-female"></i></h1>
+            <hr>
+            <h3 style="font-family: 'Delius', cursive">~ A new friend is a few clicks away ~</h3>
+            <br>
+        </div>
+
+        <!--Required Input Fields-->
+        <div class="row" style="font-family: 'Delius', cursive">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">Please answer the following questions:</div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="reserve-name">Name *</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="reserve-phone">Link to Photo Image of Your Choice*</label>
+                                <input type="text" class="form-control" id="photo">
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Survey Questions-->
+        <div class="row" style="font-family: 'Delius', cursive">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="input-field">
+                            <div class="card-header">Question #1</div><br>
+                            <h6>I prefer to spend my free time outdoors, not indoors.</h6><br>
+                            <select id="question1">
+                                <option value="" disabled selected>Select your answer</option>
+                                <option value="1">1 (strongly disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (strongly agree)</option>
+                            </select>
+                            <br><hr>
+                        </div>
+
+                        <div class="input-field">
+                                <div class="card-header">Question #2</div><br>
+                            <h6>I prefer to spend my free time outdoors, not indoors</h6><br>
+                            <select id="question1">
+                                <option value="" disabled selected>Select your answer</option>
+                                <option value="1">1 (strongly disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (strongly agree)</option>
+                            </select>
+                            <br><hr>
+                        </div>
+
+                        <div class="input-field">
+                                <div class="card-header">Question #3</div><br>
+                            <h6>I prefer to spend my free time outdoors, not indoors</h6><br>
+                            <select id="question1">
+                                <option value="" disabled selected>Select your answer</option>
+                                <option value="1">1 (strongly disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (strongly agree)</option>
+                            </select>
+                            <br><hr>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/survey">API Friends List</a> | <a href="#">GitHub Repo</a>
+            </div>
+        </footer>
+
+    </div>
+
+
+</body>
+
+</html>
