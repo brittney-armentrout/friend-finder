@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Friend Finder - Survey Page</title>
+    <title>Friend Finder - Survey</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Delius|Neucha" rel="stylesheet">
+
+
+    <!-- jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 </head>
 
@@ -35,11 +42,11 @@
                         <form role="form">
                             <div class="form-group">
                                 <label for="reserve-name">Name *</label>
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" class="form-control" id="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="reserve-photo">Link to Photo Image of Your Choice*</label>
-                                <input type="text" class="form-control" id="photo">
+                                <input type="text" class="form-control" id="photo" required>
                             </div>
 
                     </div>
@@ -203,24 +210,76 @@
                         </div>
 
                         <div class="text-center">
-                            <a href="/survey"><button class="btn btn-lg btn-primary"><i class="fas fa-user-friends"></i> Submit!</button></a>
-                          </div>
+                            <a href="/survey"><button class="btn btn-lg btn-primary" id="submit"><i class="fas fa-user-friends"></i>
+                                    Submit!</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        
-
-
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends">API Friends List</a> | <a href="#">GitHub Repo</a>
+                <p><a href="/api/friends" target="_blank">API Friends List</a> | <a href="https://github.com/brittney-armentrout/friend-finder.git"
+                        target="_blank">GitHub Repo</a> | <a href="home.html">Home</a>
             </div>
         </footer>
 
     </div>
 
+    <!-- Modal for displaying closest match -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <!-- <span class="close">&times;</span> -->
+            <p>Meet Your New Friend!</p>
+            <h5 id="userMatch"></h5>
+            <img id="userMatchImage" class="materialboxed" width="300" src="">
+        </div>
+    </div>
+
+    <!--Internal js-->
+    <script type="text/javascript">
+        //Gather user responses on Submit button click
+        $("#submit").on("click", function (event) {
+            event.preventDefault();
+
+            var userInput = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                scores: [
+                    $("#question1").val().trim(),
+                    $("#question2").val().trim(),
+                    $("#question3").val().trim(),
+                    $("#question4").val().trim(),
+                    $("#question5").val().trim(),
+                    $("#question6").val().trim(),
+                    $("#question7").val().trim(),
+                    $("#question8").val().trim(),
+                    $("#question9").val().trim(),
+                    $("#question10").val().trim()
+                ]
+            };
+            console.log("userInput: " + JSON.stringify(userInput));
+
+            //Add user inputs to friendArray
+            $.post("/api/friends", userInput)
+                .done(function (data) {
+                    console.log("Response: " + JSON.stringify(data));
+
+                    //Set the name and image values of friend match
+                    $("#userMatch").html(data.nameMatch);
+                    console.log("Name match: " + data.nameMatch);
+
+                    $("#userMatchImage").attr("src", data.photoMatch);
+
+                    //Pop open the modal dialog with match
+                    $("#results-modal").modal({
+                        open: true,
+                        dismissible: false,
+                    });
+                });
+        });
+    </script>
 
 </body>
 
